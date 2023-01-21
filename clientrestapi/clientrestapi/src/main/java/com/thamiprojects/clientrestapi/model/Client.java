@@ -16,6 +16,7 @@ public class Client {
     private String mobileNumber;
     private String idNumber;
     private String address;
+    private String message;
 
     public Client() {
     }
@@ -66,5 +67,13 @@ public class Client {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
