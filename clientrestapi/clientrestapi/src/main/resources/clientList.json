@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "firstName": "Thami",
+    "lastName": "Nkosi",
+    "mobileNumber": "0721612718",
+    "idNumber": "9210075335089",
+    "address": "102 Grant Street, Lilyvale, Benoni, 1501",
+    "message": null
+  },
+  {
+    "id": 0,
+    "firstName": "Thami",
+    "lastName": "Nkosi",
+    "mobileNumber": "0721612716",
+    "idNumber": "9210075335086",
+    "address": "102 Grant Street, Lilyvale, Benoni, 1501",
+    "message": null
+  },
+  {
+    "id": 0,
+    "firstName": "Thami",
+    "lastName": "Nkosi",
+    "mobileNumber": "0721612715",
+    "idNumber": "9210075335085",
+    "address": "102 Grant Street, Lilyvale, Benoni, 1501",
+    "message": "Successfully created Client"
+  }
+]
