@@ -56,12 +56,49 @@ public class ClientController {
         return clientResponse;
     }
 
+    @PostMapping(value = "/updateClient")
+    public Client updateClient(@RequestBody Client client) throws IOException {
+        Client clientResponse = new Client();
+        boolean clientExists = false;
+        int index = 0;
+
+        System.out.println("Hello:----" + objectMapper.writeValueAsString(ClientObjectMapper.getClientsFromJson()));
+        if (isEmptyString(client.getFirstName())) {
+            clientResponse.setMessage("Client firstName cannot be empty or null");
+        } else if (isEmptyString(client.getLastName())) {
+            clientResponse.setMessage("Client lastName cannot be empty or null");
+        } else if (!isValidSouthAfricanID(client.getIdNumber())) {
+            clientResponse.setMessage("South African ID number should contain 13 digits and cannot be empty or null");
+        } else {
+            for (Client clientObj : ClientObjectMapper.getClientsFromJson()) {
+                if (clientObj.getIdNumber().equals(client.getIdNumber())) {
+                    List<Client> newClientList = ClientObjectMapper.getClientsFromJson();
+                    newClientList.get(index).setFirstName(client.getFirstName());
+                    newClientList.get(index).setLastName(client.getLastName());
+                    newClientList.get(index).setMobileNumber(client.getMobileNumber());
+                    newClientList.get(index).setAddress(client.getAddress());
+                    newClientList.get(index).setMessage("Successfully updated Client");
+                    client.setMessage("Successfully updated Client");
+                    clientService.updateClient(newClientList);
+                    clientResponse = client;
+                    clientExists = true;
+                    break;
+                }
+                ++index;
+            }
+
+            if (!clientExists) {
+                clientResponse.setMessage("Client does not exist!");
+            }
+        }
+        return clientResponse;
+    }
+
     private boolean isEmptyString(String s) {
         if (s != null && !s.isEmpty())
             return false;
         else
             return true;
-
     }
 
     //--TODO the below function requires a third party API to validate the accuracy of a South African ID number--

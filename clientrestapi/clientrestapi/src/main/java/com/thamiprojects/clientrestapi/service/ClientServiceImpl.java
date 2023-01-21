@@ -15,4 +15,8 @@ public class ClientServiceImpl implements ClientService {
     public void saveClient(List<Client> client) throws IOException {
         ClientObjectMapper.saveNewClient(client);
     }
+
+    public void updateClient(List<Client> client) throws IOException {
+        ClientObjectMapper.saveNewClient(client);
+    }
 }
