@@ -19,4 +19,13 @@ public class ClientServiceImpl implements ClientService {
     public void updateClient(List<Client> client) throws IOException {
         ClientObjectMapper.saveNewClient(client);
     }
+
+    public Client getClient(Client client) throws IOException {
+        List<Client> getClients = ClientObjectMapper.getClientsFromJson();
+
+        return getClients.stream()
+                .filter(t -> client.getIdNumber().equals(t.getIdNumber()))
+                .findFirst()
+                .orElse(null);
+    }
 }

@@ -6,10 +6,7 @@ import com.thamiprojects.clientrestapi.service.ClientService;
 import com.thamiprojects.clientrestapi.utilities.ClientObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -90,6 +87,19 @@ public class ClientController {
             if (!clientExists) {
                 clientResponse.setMessage("Client does not exist!");
             }
+        }
+        return clientResponse;
+    }
+
+    @GetMapping(value="/getClientById")
+    public Client getClientById(@RequestBody Client client) throws IOException {
+        Client clientResponse;
+        clientResponse = clientService.getClient(client);
+        if(clientResponse != null) {
+            clientResponse.setMessage("Successfully found client.");
+        } else {
+            clientResponse = new Client();
+            clientResponse.setMessage("Client does not exist.");
         }
         return clientResponse;
     }

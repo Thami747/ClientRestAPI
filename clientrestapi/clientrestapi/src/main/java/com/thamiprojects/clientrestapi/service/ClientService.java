@@ -10,4 +10,7 @@ public interface ClientService {
     void saveClient(List<Client> client) throws IOException;
 
     void updateClient(List<Client> client) throws IOException;
+
+    Client getClient(Client client) throws IOException;
+
 }
