@@ -20,11 +20,11 @@ public class ClientServiceImpl implements ClientService {
         ClientObjectMapper.saveNewClient(client);
     }
 
-    public Client getClient(Client client) throws IOException {
+    public Client getClient(String id) throws IOException {
         List<Client> getClients = ClientObjectMapper.getClientsFromJson();
 
         return getClients.stream()
-                .filter(t -> client.getIdNumber().equals(t.getIdNumber()))
+                .filter(t -> id.equals(t.getIdNumber()))
                 .findFirst()
                 .orElse(null);
     }

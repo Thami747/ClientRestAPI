@@ -11,6 +11,6 @@ public interface ClientService {
 
     void updateClient(List<Client> client) throws IOException;
 
-    Client getClient(Client client) throws IOException;
+    Client getClient(String id) throws IOException;
 
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ClientObjectMapper {
     private static final ObjectMapper objectMapper = new ObjectMapper();
-    private static final String filePath = "clientrestapi/src/main/resources/clientList.json";
+    private static final String filePath = "src/test/resources/clientList.json";
     public static List<Client> getClientsFromJson() throws IOException {
         InputStream inputStream = new FileInputStream(filePath);
         TypeReference<List<Client>> typeReference = new TypeReference<>() {};
@@ -17,6 +17,6 @@ public class ClientObjectMapper {
     }
 
     public static void saveNewClient(List<Client> client) throws IOException {
-        objectMapper.writeValue(new File("clientrestapi/src/main/resources/clientList.json"), client);
+        objectMapper.writeValue(new File(filePath), client);
     }
 }

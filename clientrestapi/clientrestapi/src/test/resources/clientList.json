@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "firstName": "Peter",
+    "lastName": "Nkosi",
+    "mobileNumber": "0721612718",
+    "idNumber": "9210075335089",
+    "address": "777 Grant Street, Daveyton, Benoni, 2020",
+    "message": "Successfully updated Client."
+  }
+]

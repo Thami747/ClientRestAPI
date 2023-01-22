@@ -25,17 +25,18 @@ public class ClientController {
         Client clientResponse = new Client();
         boolean isDuplicate = false;
 
-        System.out.println("Hello:----" + objectMapper.writeValueAsString(ClientObjectMapper.getClientsFromJson()));
+        //The below comment is for testing purpose only
+//        System.out.println("Hello:----" + objectMapper.writeValueAsString(ClientObjectMapper.getClientsFromJson()));
         if (isEmptyString(client.getFirstName())) {
-            clientResponse.setMessage("Client firstName cannot be empty or null");
+            clientResponse.setMessage("Client firstName cannot be empty or null.");
         } else if (isEmptyString(client.getLastName())) {
-            clientResponse.setMessage("Client lastName cannot be empty or null");
+            clientResponse.setMessage("Client lastName cannot be empty or null.");
         } else if (!isValidSouthAfricanID(client.getIdNumber())) {
-            clientResponse.setMessage("South African ID number should contain 13 digits and cannot be empty or null");
+            clientResponse.setMessage("South African ID number should contain 13 digits and cannot be empty or null.");
         } else {
             for (Client clientObj : ClientObjectMapper.getClientsFromJson()) {
                 if (clientObj.getIdNumber().equals(client.getIdNumber()) || clientObj.getMobileNumber().equals(client.getMobileNumber())) {
-                    clientResponse.setMessage("Filed to create Client, either ID number or mobile number is duplicate");
+                    clientResponse.setMessage("Filed to create Client, either ID number or mobile number is duplicate.");
                     isDuplicate = true;
                     break;
                 }
@@ -43,7 +44,7 @@ public class ClientController {
 
             if (!isDuplicate) {
                 List<Client> newClientList = ClientObjectMapper.getClientsFromJson();
-                client.setMessage("Successfully created Client");
+                client.setMessage("Successfully created Client.");
                 newClientList.add(client);
                 clientService.saveClient(newClientList);
                 clientResponse = client;
@@ -58,14 +59,14 @@ public class ClientController {
         Client clientResponse = new Client();
         boolean clientExists = false;
         int index = 0;
-
-        System.out.println("Hello:----" + objectMapper.writeValueAsString(ClientObjectMapper.getClientsFromJson()));
+        //The below comment is for testing purpose only
+//        System.out.println("Hello:----" + objectMapper.writeValueAsString(ClientObjectMapper.getClientsFromJson()));
         if (isEmptyString(client.getFirstName())) {
-            clientResponse.setMessage("Client firstName cannot be empty or null");
+            clientResponse.setMessage("Client firstName cannot be empty or null.");
         } else if (isEmptyString(client.getLastName())) {
-            clientResponse.setMessage("Client lastName cannot be empty or null");
+            clientResponse.setMessage("Client lastName cannot be empty or null.");
         } else if (!isValidSouthAfricanID(client.getIdNumber())) {
-            clientResponse.setMessage("South African ID number should contain 13 digits and cannot be empty or null");
+            clientResponse.setMessage("South African ID number should contain 13 digits and cannot be empty or null.");
         } else {
             for (Client clientObj : ClientObjectMapper.getClientsFromJson()) {
                 if (clientObj.getIdNumber().equals(client.getIdNumber())) {
@@ -74,8 +75,8 @@ public class ClientController {
                     newClientList.get(index).setLastName(client.getLastName());
                     newClientList.get(index).setMobileNumber(client.getMobileNumber());
                     newClientList.get(index).setAddress(client.getAddress());
-                    newClientList.get(index).setMessage("Successfully updated Client");
-                    client.setMessage("Successfully updated Client");
+                    newClientList.get(index).setMessage("Successfully updated Client.");
+                    client.setMessage("Successfully updated Client.");
                     clientService.updateClient(newClientList);
                     clientResponse = client;
                     clientExists = true;
@@ -91,10 +92,10 @@ public class ClientController {
         return clientResponse;
     }
 
-    @GetMapping(value="/getClientById")
-    public Client getClientById(@RequestBody Client client) throws IOException {
+    @GetMapping(value="/getClientById/{id}")
+    public Client getClientById(@PathVariable String id) throws IOException {
         Client clientResponse;
-        clientResponse = clientService.getClient(client);
+        clientResponse = clientService.getClient(id);
         if(clientResponse != null) {
             clientResponse.setMessage("Successfully found client.");
         } else {
